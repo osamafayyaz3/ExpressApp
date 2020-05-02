@@ -3,6 +3,9 @@
 
 
 ## Available Scripts
+In the project directory, you can run:
+### `npm install` 
+This will install the required dependencies to run the web application
 
 In the project directory, you can run:
 
