@@ -1,15 +1,30 @@
-const products = [];
+const db = require('../util/database');
+const Cart = require('./cart');
 
 module.exports = class Product {
-    constructor(title) {
-        this.title = title;
-    }
+  constructor(id, title, imageUrl, description, price) {
+    this.id = id;
+    this.title = title;
+    this.imageUrl = imageUrl;
+    this.description = description;
+    this.price = price;
+  }
 
-    save() {
-        products.push(this);
-    }
+  save() {
+    return db.execute('INSERT INTO products (title, price, description, imageUrl) VALUES (?, ?, ?, ?)',
+    [this.title, this.price, this.description, this.imageUrl]
+    );
+  }
 
-    static fetchAll() {
-        return products;
-    }
+  static deleteById(id) {
+    
+  }
+
+  static fetchAll() {
+    return db.execute('SELECT * FROM products');
+  }
+
+  static findById(id) {
+    return db.execute('SELECT * FROM products WHERE products.id = ?', [id]);
+  }
 }
